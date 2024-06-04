@@ -1,0 +1,48 @@
+---
+import Linkedin from '../icons/Linkedin.astro'
+import GitHubLogo from '../icons/GitHub.astro'
+
+const ICONS = {
+	Linkedin: {
+		icon: Linkedin
+	},
+
+	GitHubLogo: {
+		icon: GitHubLogo
+	}
+}
+
+const SOCIALS = [
+	{
+		title: 'Linkedin',
+		link: 'https://www.linkedin.com/in/vicente-v%C3%A1squez-gatica/',
+		color: 'bg-[#0077b5]',
+		icon: [ICONS.Linkedin]
+	},
+
+	{
+		title: 'GitHub',
+		link: 'https://github.com/VixoPlank',
+		color: 'bg-[#4b5563]',
+		icon: [ICONS.GitHubLogo]
+	}
+]
+---
+
+{
+	SOCIALS.map(({ title, link, color, icon }) => (
+		<li>
+			<a
+				href={link}
+				class={`group flex justify-center rounded-md ${color} from-gray-800 p-1 font-semibold text-white drop-shadow-xl transition-all duration-500 hover:translate-y-3 hover:rounded-[50%] hover:from-[#331029] hover:to-[#310413]`}
+			>
+				{icon.map((logo) => (
+					<logo.icon />
+				))}
+				<span class='absolute opacity-0 duration-700 group-hover:-translate-y-10 group-hover:text-sm group-hover:text-gray-50 group-hover:opacity-100'>
+					{title}
+				</span>
+			</a>
+		</li>
+	))
+}
