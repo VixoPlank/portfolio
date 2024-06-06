@@ -1,0 +1,107 @@
+---
+// import React from '../icons/React.astro'
+import Tailwind from '../icons/Tailwind.astro'
+import AstroLogo from '../icons/AstroLogo.astro'
+import NextJS from '../icons/NextJS.astro'
+import Zustand from '../icons/Zustand.astro'
+import Axios from '../icons/Axios.astro'
+import GitHub from '../icons/GitHub.astro'
+// import ArrowRight from '../icons/ArrowRight.astro'
+
+const TAGS = {
+	NEXT: {
+		icon: NextJS
+	},
+
+	TAILWIND: {
+		icon: Tailwind
+	},
+
+	ASTRO: {
+		icon: AstroLogo
+	},
+
+	ZUSTAND: {
+		icon: Zustand
+	},
+
+	AXIOS: {
+		icon: Axios
+	}
+}
+
+const PROJECTS = [
+	{
+		title: 'API Rick & Morty',
+		description:
+			'Aplicación Next.js que usa Zustand y Axios para consumir la API pública de Rick and Morty. Permite buscar, filtrar, visualizar y guardar personajes favoritos, además de acceder a detalles y paginar resultados.',
+		link: 'https://api-rick-and-morty-ashen.vercel.app/',
+		github: 'https://github.com/VixoPlank/api-rick-and-morty',
+		image: "bg-[url('/rickymorty.png')]",
+		tags: [TAGS.NEXT, TAGS.TAILWIND, TAGS.AXIOS, TAGS.ZUSTAND]
+	},
+	{
+		title: 'API Rick & Morty',
+		description:
+			'Aplicación Next.js que usa Zustand y Axios para consumir la API pública de Rick and Morty. Permite buscar, filtrar, visualizar y guardar personajes favoritos, además de acceder a detalles y paginar resultados.',
+		link: 'https://api-rick-and-morty-ashen.vercel.app/',
+		github: 'https://github.com/VixoPlank/api-rick-and-morty',
+		image: "bg-[url('/rickymorty.png')]",
+		tags: [TAGS.NEXT, TAGS.TAILWIND, TAGS.AXIOS, TAGS.ZUSTAND]
+	}
+]
+---
+
+<div class='grid grid-cols-1 gap-4 lg:grid-cols-2'>
+	{
+		PROJECTS.map(({ title, description, link, github, image, tags }) => (
+			<article
+				class={`card ${image} relative flex h-60 w-[360px] items-center justify-center overflow-hidden rounded-[10px] bg-cover bg-center`}
+			>
+				<div class='card__content absolute h-full w-full p-4 opacity-0'>
+					<div class='flex items-center justify-between'>
+						<a href={link} target='_blank'>
+							<p class='m-0 text-2xl font-bold'>{title}</p>
+						</a>
+						<a href={github} target='_blank'>
+							<GitHub class='m-2 size-6  transition duration-500 ease-in-out hover:text-gray-500' />
+						</a>
+					</div>
+					<p class='mt-2.5  text-gray-800'>{description}</p>
+
+					<ul class='mt-2 flex items-end justify-end gap-x-2'>
+						{tags.map((tag) => (
+							<li>
+								<tag.icon class='size-6' />
+							</li>
+						))}
+					</ul>
+				</div>
+			</article>
+		))
+	}
+</div>
+
+<style>
+	.card {
+		transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+	}
+
+	.card:hover {
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+	}
+
+	.card__content {
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%) rotate(-45deg);
+		box-sizing: border-box;
+		background-color: #fff;
+		transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+	}
+
+	.card:hover .card__content {
+		transform: translate(-50%, -50%) rotate(0deg);
+		opacity: 1;
+	}
+</style>
