@@ -1,12 +1,87 @@
-<header class='mx-auto flex w-full items-center justify-center py-7 text-lg text-gray-50'>
-	<nav class='space-x-7'>
-		<a href='#inicio' class='transition duration-500 ease-in-out hover:text-blue-600'>Inicio</a>
-		<a href='#proyectos' class='transition duration-500 ease-in-out hover:text-blue-600'
-			>Proyectos</a
+<header class='mx-auto flex w-full items-center justify-between py-7 text-lg text-gray-50'>
+	<div class='flex flex-1 items-center justify-center'>
+		<nav class='space-x-7'>
+			<a
+				href='#inicio'
+				class='hidden transition duration-500 ease-in-out hover:text-blue-600 lg:inline'>Inicio</a
+			>
+			<a
+				href='#proyectos'
+				class='hidden transition duration-500 ease-in-out hover:text-blue-600 lg:inline'
+				>Proyectos</a
+			>
+			<a
+				href='#experiencia'
+				class='hidden transition duration-500 ease-in-out hover:text-blue-600 lg:inline'
+				>Experiencia</a
+			>
+			<a
+				href='#contacto'
+				class='hidden transition duration-500 ease-in-out hover:text-blue-600 lg:inline'>Contacto</a
+			>
+		</nav>
+	</div>
+	<button id='menu-button' class='mx-4 block focus:outline-none lg:hidden'>
+		<!-- Icono de hamburguesa -->
+		<svg
+			id='menu-icon'
+			class='h-8 w-8 text-white'
+			fill='none'
+			stroke='currentColor'
+			viewBox='0 0 24 24'
+			xmlns='http://www.w3.org/2000/svg'
 		>
-		<a href='#experiencia' class='transition duration-500 ease-in-out hover:text-blue-600'
-			>Experiencia</a
-		>
-		<a href='#contacto' class='transition duration-500 ease-in-out hover:text-blue-600'>Contacto</a>
-	</nav>
+			<path
+				id='menu-icon-bars'
+				stroke-linecap='round'
+				stroke-linejoin='round'
+				stroke-width='2'
+				d='M4 6h16M4 12h16m-7 6h7'></path>
+			<path
+				id='menu-icon-close'
+				class='hidden'
+				stroke-linecap='round'
+				stroke-linejoin='round'
+				stroke-width='2'
+				d='M6 18L18 6M6 6l12 12'></path>
+		</svg>
+	</button>
 </header>
+
+<!-- Menú modal -->
+<div
+	id='menu-modal'
+	class='fixed inset-0 z-50 hidden flex-col items-center justify-center space-y-7 bg-black bg-opacity-90 text-gray-50'
+>
+	<a href='#inicio' class='text-2xl hover:text-blue-600'>Inicio</a>
+	<a href='#proyectos' class='text-2xl hover:text-blue-600'>Proyectos</a>
+	<a href='#experiencia' class='text-2xl hover:text-blue-600'>Experiencia</a>
+	<a href='#contacto' class='text-2xl hover:text-blue-600'>Contacto</a>
+</div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		const menuButton = document.getElementById('menu-button')
+		const menuIconBars = document.getElementById('menu-icon-bars')
+		const menuIconClose = document.getElementById('menu-icon-close')
+		const menuModal = document.getElementById('menu-modal')
+
+		menuButton.addEventListener('click', function () {
+			menuModal.classList.toggle('hidden')
+			menuModal.classList.toggle('flex')
+
+			// Cambiar icono del menú
+			menuIconBars.classList.toggle('hidden')
+			menuIconClose.classList.toggle('hidden')
+		})
+
+		menuModal.addEventListener('click', function () {
+			menuModal.classList.add('hidden')
+			menuModal.classList.remove('flex')
+
+			// Restaurar icono del menú
+			menuIconBars.classList.remove('hidden')
+			menuIconClose.classList.add('hidden')
+		})
+	})
+</script>
