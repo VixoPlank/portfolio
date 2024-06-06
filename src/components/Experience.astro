@@ -1,0 +1,14 @@
+---
+import ExperienceItem from './ExperienceItem.astro'
+const EXPERIENCE = [
+	{
+		title: 'Soporte y Mantenimiento − Ferretería Madrid',
+		date: '2020 (dic) – 2021 (ene)',
+		description:
+			'Práctica Técnico Profesional encargado de la resolución eficiente de incidencias relacionadas con hardware, software y redes, así como de la implementación de actualizaciones y con hardware, software y redes, así como de la implementación de actualizaciones y configuraciones de software. Mi rol incluyó proporcionar soporte técnico integral, fortaleciendo mis habilidades en la resolución proactiva de problemas y en la comunicación efectiva para garantizar una colaboración exitosa en equipos multidisciplinarios.',
+		img: '/madrid.webp'
+	}
+]
+---
+
+{EXPERIENCE.map((experiencie) => <ExperienceItem {...experiencie} />)}
