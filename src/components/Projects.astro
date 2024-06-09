@@ -39,16 +39,16 @@ const PROJECTS = [
 		github: 'https://github.com/VixoPlank/api-rick-and-morty',
 		image: "bg-[url('/rickymorty.png')]",
 		tags: [TAGS.NEXT, TAGS.TAILWIND, TAGS.AXIOS, TAGS.ZUSTAND]
-	},
-	{
-		title: 'API Rick & Morty',
-		description:
-			'Aplicación Next.js que usa Zustand y Axios para consumir la API pública de Rick and Morty. Permite buscar, filtrar, visualizar y guardar personajes favoritos, además de acceder a detalles y paginar resultados.',
-		link: 'https://api-rick-and-morty-ashen.vercel.app/',
-		github: 'https://github.com/VixoPlank/api-rick-and-morty',
-		image: "bg-[url('/rickymorty.png')]",
-		tags: [TAGS.NEXT, TAGS.TAILWIND, TAGS.AXIOS, TAGS.ZUSTAND]
 	}
+	// {
+	// 	title: 'API Rick & Morty',
+	// 	description:
+	// 		'Aplicación Next.js que usa Zustand y Axios para consumir la API pública de Rick and Morty. Permite buscar, filtrar, visualizar y guardar personajes favoritos, además de acceder a detalles y paginar resultados.',
+	// 	link: 'https://api-rick-and-morty-ashen.vercel.app/',
+	// 	github: 'https://github.com/VixoPlank/api-rick-and-morty',
+	// 	image: "bg-[url('/rickymorty.png')]",
+	// 	tags: [TAGS.NEXT, TAGS.TAILWIND, TAGS.AXIOS, TAGS.ZUSTAND]
+	// }
 ]
 ---
 
@@ -60,10 +60,14 @@ const PROJECTS = [
 			>
 				<div class='card__content absolute h-full w-full p-4 opacity-0'>
 					<div class='flex items-center justify-between'>
-						<a href={link} target='_blank'>
+						<a href={link} target='_blank' aria-label={`Ir al Proyecto ${title}`}>
 							<p class='m-0 text-2xl font-bold'>{title}</p>
 						</a>
-						<a href={github} target='_blank'>
+						<a
+							href={github}
+							target='_blank'
+							aria-label={`Ver el repositorio de GitHub del proyecto ${title}`}
+						>
 							<GitHub class='m-2 size-6  transition duration-500 ease-in-out hover:text-gray-500' />
 						</a>
 					</div>
