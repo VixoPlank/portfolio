@@ -4,6 +4,8 @@ import SectionContainer from '../components/SectionContainer.astro'
 import Skills from '../components/Skills.astro'
 import Projects from '../components/Projects.astro'
 import Experience from '../components/Experience.astro'
+import Download from '../icons/Download.astro'
+import Contact from '../icons/Contact.astro'
 ---
 
 <Layout
@@ -19,7 +21,7 @@ import Experience from '../components/Experience.astro'
 			<div class='flex flex-col items-center justify-center pt-4 text-gray-50'>
 				<h1 class='text-center text-4xl font-bold'>Hola, Soy Vicente Vásquez</h1>
 				<span
-					class='animate-text-gradient inline-flex bg-gradient-to-r from-[#38b6ff] via-[#004aad] to-[#38b6ff] bg-[200%_auto] bg-clip-text pt-2 text-center text-3xl font-bold text-transparent'
+					class='inline-flex animate-text-gradient bg-gradient-to-r from-[#38b6ff] via-[#004aad] to-[#38b6ff] bg-[200%_auto] bg-clip-text pt-2 text-center text-3xl font-bold text-transparent'
 				>
 					Full Stack Developer
 				</span>
@@ -32,14 +34,18 @@ import Experience from '../components/Experience.astro'
 					variados. Actualmente me encuentro en mi ultimo año de Ingenería en Informática.
 				</p>
 			</div>
-			<div class='flex items-center justify-center space-x-5 py-7 text-lg'>
+			<div class='flex items-center justify-center space-x-5 py-7'>
 				<button
-					class='rounded-full border-2 border-white bg-white px-5 py-3 font-bold hover:bg-transparent hover:text-white'
-					>Contactame</button
+					class='flex items-center rounded-full border-2 border-white bg-white px-5 py-3 font-bold transition hover:scale-110'
+				>
+					<Contact class='size-6' />
+					Contactame</button
 				>
 				<button
-					class='rounded-full border-2 border-white px-5 py-3 font-bold text-white hover:bg-white hover:text-black'
-					>Descargar CV</button
+					class='flex items-center gap-x-2 rounded-full border-2 border-white px-5 py-3 font-bold text-white transition hover:scale-110'
+				>
+					<Download class='size-6' />
+					Descargar CV</button
 				>
 			</div>
 		</SectionContainer>
