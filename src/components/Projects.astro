@@ -70,13 +70,15 @@ const PROJECTS = [
 						<a href={link} target='_blank' aria-label={`Ir al Proyecto ${title}`}>
 							<p class='m-0 text-2xl font-bold hover:underline'>{title}</p>
 						</a>
-						<a
-							href={github}
-							target='_blank'
-							aria-label={`Ver el repositorio de GitHub del proyecto ${title}`}
-						>
-							<GitHub class='m-2 size-6 transition duration-500 ease-in-out hover:text-gray-500' />
-						</a>
+						{github && (
+							<a
+								href={github}
+								target='_blank'
+								aria-label={`Ver el repositorio de GitHub del proyecto ${title}`}
+							>
+								<GitHub className='m-2 size-6 transition duration-500 ease-in-out hover:scale-110' />
+							</a>
+						)}
 					</div>
 					<p class='mt-2.5 min-h-32 text-gray-800'>{description}</p>
 
