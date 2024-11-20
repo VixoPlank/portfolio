@@ -1,28 +1,53 @@
-<header class='mx-auto flex w-full items-center justify-between py-7 text-lg text-gray-50'>
+---
+const navItems = [
+	{
+		title: 'Inicio',
+		label: 'inicio',
+		url: '#inicio'
+	},
+	{
+		title: 'Proyectos',
+		label: 'proyectos',
+		url: '#proyectos'
+	},
+	{
+		title: 'Experiencia',
+		label: 'experiencia',
+		url: '#experiencia'
+	},
+	{
+		title: 'Contacto',
+		label: 'contacto',
+		url: '#contacto'
+	}
+]
+---
+
+<header
+	class='sticky top-0 z-20 mx-auto flex w-full items-center justify-between py-5 text-lg text-gray-50 lg:w-[745px] lg:rounded-md lg:border lg:border-white lg:backdrop-blur-sm'
+>
 	<div class='flex flex-1 items-center justify-center'>
 		<nav class='space-x-7'>
-			<a
-				href='#inicio'
-				class='hidden transition duration-500 ease-in-out hover:text-blue-600 lg:inline'>Inicio</a
-			>
-			<a
-				href='#proyectos'
-				class='hidden transition duration-500 ease-in-out hover:text-blue-600 lg:inline'
-				>Proyectos</a
-			>
-			<a
-				href='#experiencia'
-				class='hidden transition duration-500 ease-in-out hover:text-blue-600 lg:inline'
-				>Experiencia</a
-			>
-			<a
-				href='#contacto'
-				class='hidden transition duration-500 ease-in-out hover:text-blue-600 lg:inline'>Contacto</a
-			>
+			{
+				navItems.map((link) => (
+					<a
+						href={link.url}
+						aria-label={link.label}
+						class='hidden transition duration-500 ease-in-out hover:text-blue-600 lg:inline'
+					>
+						{link.title}
+					</a>
+				))
+			}
 		</nav>
 	</div>
-	<button id='menu-button' aria-label='Icono Menu' class='mx-4 block focus:outline-none lg:hidden'>
-		<!-- Icono de hamburguesa -->
+
+	<!-- Botón del menú hamburguesa -->
+	<button
+		id='menu-button'
+		aria-label='Icono Menu'
+		class='mx-4 block rounded-md border border-white bg-transparent/50 p-2 backdrop-blur-sm focus:outline-none lg:hidden'
+	>
 		<svg
 			id='menu-icon'
 			class='h-8 w-8 text-white'
@@ -53,10 +78,13 @@
 	id='menu-modal'
 	class='fixed inset-0 z-50 hidden flex-col items-center justify-center space-y-7 bg-black bg-opacity-90 text-gray-50'
 >
-	<a href='#inicio' class='text-2xl hover:text-blue-600'>Inicio</a>
-	<a href='#proyectos' class='text-2xl hover:text-blue-600'>Proyectos</a>
-	<a href='#experiencia' class='text-2xl hover:text-blue-600'>Experiencia</a>
-	<a href='#contacto' class='text-2xl hover:text-blue-600'>Contacto</a>
+	{
+		navItems.map((link) => (
+			<a href={link.url} aria-label={link.label} class='text-2xl hover:text-blue-600'>
+				{link.title}
+			</a>
+		))
+	}
 </div>
 
 <script>
