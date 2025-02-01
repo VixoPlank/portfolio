@@ -6,7 +6,7 @@ image: 'https://6mhxtfx2hf.ufs.sh/f/ZgemkJiW0dleneKJVC5K8c29n0WaswQAYeE5lomSLHru
 tags: ['HTML5', 'Historia', 'Tecnología']
 ---
 
-# Tim Berners-Lee: El Arquitecto de la Web Moderna
+<!-- # Tim Berners-Lee: El Arquitecto de la Web Moderna -->
 
 ¿Te has preguntado alguna vez quién está detrás de la tecnología que nos permite navegar por internet? Detrás de cada página web que visitas hay una historia fascinante que comenzó con un científico británico y su visión de un mundo más conectado.
 
