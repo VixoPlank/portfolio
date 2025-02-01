@@ -1,0 +1,41 @@
+---
+import Email from '../../icons/Email.astro'
+import GitHub from '../../icons/GitHub.astro'
+import Linkedin from '../../icons/Linkedin.astro'
+import SectionContainer from '../SectionContainer.astro'
+
+const navLinks = [
+	{
+		title: 'Linkedin',
+		url: 'https://www.linkedin.com/in/vicente-v%C3%A1squez-gatica/',
+		icon: Linkedin
+	},
+	{
+		title: 'GitHub',
+		url: 'https://github.com/VixoPlank',
+		icon: GitHub
+	},
+	{
+		title: 'Email',
+		url: 'mailto:vichevasquez@gmail.com',
+		icon: Email
+	}
+]
+---
+
+<SectionContainer id='footer' class='flex items-center justify-center py-10 md:justify-between'>
+	<p class='hidden text-gray-400 md:block'>
+		© {new Date().getFullYear()} Vicente Vásquez. Todos los derechos reservados.
+	</p>
+	<ul class='flex gap-x-3 text-gray-400'>
+		{
+			navLinks.map((link) => (
+				<li class='transition duration-300 hover:scale-110 hover:text-gray-100'>
+					<a href={link.url}>
+						<link.icon class='size-8' />
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</SectionContainer>
