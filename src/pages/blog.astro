@@ -1,0 +1,78 @@
+---
+import { getCollection } from 'astro:content'
+import { formatDate } from '../utils/formatDate'
+import BlogLayout from '../layouts/BlogLayout.astro'
+
+const posts = (await getCollection('posts')).sort(
+	(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+)
+---
+
+<BlogLayout
+	title='Blog | Vicente Vásquez'
+	description='Explora artículos sobre desarrollo web, tecnología y más'
+>
+	<main class='mx-auto max-w-6xl px-4 py-12'>
+		<div class='mb-12 text-center'>
+			<div class='relative inline-block'>
+				<h1
+					class='relative z-10 mb-4 animate-text-gradient bg-gradient-to-r from-[#38b6ff] via-[#004aad] to-[#38b6ff] bg-[200%_auto] bg-clip-text py-2 text-4xl font-bold leading-normal text-transparent md:text-5xl'
+				>
+					Blog de Vicente Vásquez
+				</h1>
+			</div>
+			<p class='mx-auto max-w-2xl text-lg leading-relaxed text-gray-300 md:text-xl'>
+				Explora mis artículos sobre desarrollo web, tecnología y experiencias en el mundo del
+				software.
+			</p>
+		</div>
+
+		<div class='grid gap-8 md:grid-cols-2 lg:grid-cols-3'>
+			{
+				posts.map((post) => {
+					const { slug, data } = post
+					const { title, image, publishDate, tags } = data
+
+					return (
+						<article class='rounded-xl border border-gray-500 px-5 py-5 text-white transition hover:scale-105'>
+							<a href={`/blog/${slug}`}>
+								<div>
+									<img
+										transition:name={`img-${slug}`}
+										class='w-full rounded-lg object-cover'
+										src={image}
+										alt={title}
+										loading='lazy'
+									/>
+								</div>
+								<div class='mt-5'>
+									<div class='mb-3 flex flex-wrap gap-2'>
+										{tags.map((tag) => (
+											<span class='rounded-lg bg-[#292C35] px-2 py-1 text-sm font-semibold text-[#4B6BFB]'>
+												{tag}
+											</span>
+										))}
+									</div>
+									<h2 class='mt-3 text-xl font-semibold'>{title}</h2>
+									<div class='mt-5 flex justify-end'>
+										<time datetime={publishDate.toISOString()} class='text-sm text-gray-400'>
+											{formatDate(publishDate)}
+										</time>
+									</div>
+								</div>
+							</a>
+						</article>
+					)
+				})
+			}
+		</div>
+
+		{
+			posts.length === 0 && (
+				<div class='py-12 text-center'>
+					<p class='text-lg text-gray-400'>No hay artículos publicados todavía.</p>
+				</div>
+			)
+		}
+	</main>
+</BlogLayout>
