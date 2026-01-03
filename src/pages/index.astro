@@ -9,69 +9,74 @@ import Badge from '../components/Badge.astro'
 import Linkedin from '../icons/Linkedin.astro'
 import Email from '../icons/Email.astro'
 import SocialNetwork from '../components/SocialNetwork.astro'
+import { Image } from 'astro:assets'
+import hero from '../../public/hero.jpeg'
 ---
 
 <Layout
-	title='Porfolio de Vicente Vásquez - Desarrollador y Programador Web con más de 3 años de experiencia.'
-	description='Contrata a Vicente para crear tu aplicación web o móvil. Desarrollador Web, especializado en crear aplicaciones únicas.'
+	title="Porfolio de Vicente Vásquez - Desarrollador y Programador Web con más de 3 años de experiencia."
+	description="Contrata a Vicente para crear tu aplicación web o móvil. Desarrollador Web, especializado en crear aplicaciones únicas."
 >
-	<main class='px-4'>
+	<main class="px-4">
 		<!-- Inicio -->
-		<SectionContainer id='inicio' class='py-10'>
-			<figure class='flex items-center justify-center'>
-				<img
-					src='/hero.jpeg'
-					alt='Foto de Perfil Vicente'
-					class='size-44 rounded-full object-cover'
-				/>
+		<SectionContainer id="inicio" class="py-10">
+			<figure class="flex items-center justify-center">
+				<Image src={hero} alt="Foto de Perfil Vicente" class="size-44 rounded-full object-cover" />
 			</figure>
 			<a
-				href='https://linkedin.com/in/vicente-vásquez-gatica/'
-				target='_blank'
-				rel='noopener'
-				class='mt-5 flex items-center justify-center transition md:hover:scale-105'
+				href="https://linkedin.com/in/vicente-vásquez-gatica/"
+				target="_blank"
+				rel="noopener"
+				class="mt-5 flex items-center justify-center transition md:hover:scale-105"
 			>
 				<Badge>Disponible para trabajar</Badge>
 			</a>
-			<div class='flex flex-col items-center justify-center pt-4 text-gray-50'>
-				<h1 class='text-center text-4xl font-bold'>Hola, Soy Vicente Vásquez</h1>
+			<div class="flex flex-col items-center justify-center pt-4 text-gray-50">
+				<h1 class="text-center text-4xl font-bold">Hola, Soy Vicente Vásquez</h1>
 				<span
-					class='inline-flex animate-text-gradient bg-gradient-to-r from-[#38b6ff] via-[#004aad] to-[#38b6ff] bg-[200%_auto] bg-clip-text pt-2 text-center text-3xl font-bold text-transparent'
+					class="inline-flex animate-text-gradient bg-gradient-to-r from-[#38b6ff] via-[#004aad] to-[#38b6ff] bg-[200%_auto] bg-clip-text pt-2 text-center text-3xl font-bold text-transparent"
 				>
 					Full Stack Developer
 				</span>
 			</div>
-			<div class='pt-5 text-center'>
-				<p class='text-gray-400'>
+			<div class="pt-5 text-center">
+				<p class="text-gray-400">
+					Desarrollador Web con más de 4 años de experiencia especializado en Next.js, React,
+					TypeScript y Node.js, y con habilidades en diseño UI usando Tailwind CSS. Comprometido con
+					la calidad y eficiencia, aplico buenas prácticas como Gitflow y Conventional Commits. Me
+					esfuerzo por mantener mis habilidades al día y superar expectativas en diversos proyectos
+					del ecosistema web.
+				</p>
+				<!-- <p class="text-gray-400">
 					+3 años de experiencia como Desarrollador Web especializado en React.js, JavaScript y Git,
 					y con habilidades en diseño UI con Tailwind CSS. Comprometido con la calidad y eficiencia,
 					me esfuerzo por mantener mis habilidades al día y superar expectativas en proyectos
 					variados. Actualmente me encuentro en mi ultimo año de Ingenería en Informática.
-				</p>
+				</p> -->
 			</div>
-			<div class='flex items-center justify-center space-x-5 py-7'>
+			<div class="flex items-center justify-center space-x-5 py-7">
 				<a
-					href='mailto:vichevasquez@gmail.com'
-					class='flex items-center rounded-full border-2 border-white bg-white px-5 py-3 font-bold transition hover:scale-110'
+					href="mailto:vichevasquez@gmail.com"
+					class="flex items-center rounded-full border-2 border-white bg-white px-5 py-3 font-bold transition hover:scale-110"
 				>
-					<Contact class='mr-2 size-6' />
+					<Contact class="mr-2 size-6" />
 					Contactame</a
 				>
 				<a
-					href='https://www.linkedin.com/in/vicente-v%C3%A1squez-gatica/'
-					target='_blank'
-					class='flex items-center gap-x-2 rounded-full border-2 border-white px-5 py-3 font-bold text-white transition hover:scale-110'
+					href="https://www.linkedin.com/in/vicente-v%C3%A1squez-gatica/"
+					target="_blank"
+					class="flex items-center gap-x-2 rounded-full border-2 border-white px-5 py-3 font-bold text-white transition hover:scale-110"
 				>
-					<Linkedin class='size-6' />
+					<Linkedin class="size-6" />
 					Linkedln</a
 				>
 			</div>
 		</SectionContainer>
 
 		<!-- Skills -->
-		<SectionContainer id='skills'>
+		<SectionContainer id="skills">
 			<h1
-				class='bg-gradient-to-t from-[#FFD700] to-[#FFA500] bg-clip-text text-center text-3xl font-bold text-transparent'
+				class="bg-gradient-to-t from-[#FFD700] to-[#FFA500] bg-clip-text text-center text-3xl font-bold text-transparent"
 			>
 				Skills
 			</h1>
@@ -79,9 +84,9 @@ import SocialNetwork from '../components/SocialNetwork.astro'
 		</SectionContainer>
 
 		<!-- Proyectos -->
-		<SectionContainer id='proyectos'>
+		<SectionContainer id="proyectos">
 			<h1
-				class='bg-gradient-to-t from-[#FF8660] to-[#D5491D] bg-clip-text pb-10 text-center text-3xl font-bold text-transparent'
+				class="bg-gradient-to-t from-[#FF8660] to-[#D5491D] bg-clip-text pb-10 text-center text-3xl font-bold text-transparent"
 			>
 				Proyectos
 			</h1>
@@ -89,9 +94,9 @@ import SocialNetwork from '../components/SocialNetwork.astro'
 		</SectionContainer>
 
 		<!-- Experiencia -->
-		<SectionContainer id='experiencia'>
+		<SectionContainer id="experiencia">
 			<h1
-				class='bg-gradient-to-t from-[#5BADFF] to-[#1373D1] bg-clip-text text-center text-3xl font-bold text-transparent'
+				class="bg-gradient-to-t from-[#5BADFF] to-[#1373D1] bg-clip-text text-center text-3xl font-bold text-transparent"
 			>
 				Experiencia
 			</h1>
@@ -99,21 +104,21 @@ import SocialNetwork from '../components/SocialNetwork.astro'
 		</SectionContainer>
 
 		<!-- Contacto -->
-		<SectionContainer id='contacto' class='w-full px-4 lg:px-0'>
-			<h2 class='text-lg font-bold text-gray-50'>Contáctame</h2>
-			<p class='w-full pt-8 text-gray-400'>
+		<SectionContainer id="contacto" class="w-full px-4 lg:px-0">
+			<h2 class="text-lg font-bold text-gray-50">Contáctame</h2>
+			<p class="w-full pt-8 text-gray-400">
 				Gracias por visitar mi portafolio. Si tienes alguna pregunta o propuesta, no dudes en
 				ponerte en contacto.
 			</p>
-			<p class='mt-3 text-gray-400'>¡Espero saber de ti pronto!</p>
-			<div class='mt-5 flex items-center gap-x-2'>
-				<Email class='size-5 text-white' />
-				<a class='font-bold text-gray-400 hover:underline' href='mailto:vichevasquez@gmail.com'
+			<p class="mt-3 text-gray-400">¡Espero saber de ti pronto!</p>
+			<div class="mt-5 flex items-center gap-x-2">
+				<Email class="size-5 text-white" />
+				<a class="font-bold text-gray-400 hover:underline" href="mailto:vichevasquez@gmail.com"
 					>vichevasquez@gmail.com</a
 				>
 			</div>
 
-			<ul class='flex items-center gap-x-5 pt-10'>
+			<ul class="flex items-center gap-x-5 pt-10">
 				<SocialNetwork />
 			</ul>
 		</SectionContainer>

@@ -12,6 +12,14 @@ import Express from '../icons/Express.astro'
 import Mongo from '../icons/Mongo.astro'
 import MySql from '../icons/MySql.astro'
 import Prisma from '../icons/Prisma.astro'
+import NestJS from '../icons/NestJS.astro'
+import Docker from '../icons/Docker.astro'
+import { Image } from 'astro:assets'
+import envGuardianImg from '../../public/env-guardian.png'
+import nestjsAuthImg from '../../public/nestjs-auth-best-practices.png'
+import posSystemImg from '../../public/777shots_so.png'
+import rickMortyImg from '../../public/816shots_so.png'
+import githubProfileImg from '../../public/261shots_so.png'
 
 // Tecnologías principales (basadas en Skills.astro)
 const TAGS = {
@@ -62,17 +70,47 @@ const TAGS = {
 	VITE: {
 		icon: Vite,
 		name: 'Vite'
+	},
+	NESTJS: {
+		icon: NestJS,
+		name: 'NestJS'
+	},
+	DOCKER: {
+		icon: Docker,
+		name: 'Docker'
 	}
 }
 
 const PROJECTS = [
+	{
+		title: 'Env-Guardian – Validador inteligente de archivos .env',
+		description:
+			'Validador de archivos .env que detecta variables faltantes, desincronización y tipos incorrectos, ofreciendo una CLI y web app para gestionar configuraciones de forma segura y sencilla.',
+		link: 'https://env-guardian.vercel.app/',
+		github: 'https://github.com/VixoPlank/env-guardian',
+		image: envGuardianImg,
+		tags: [TAGS.NODE, TAGS.TAILWIND, TAGS.REACT],
+		mainTech: [TAGS.NODE, TAGS.REACT],
+		status: 'Completado'
+	},
+	{
+		title: 'Sistema de autenticación y autorización',
+		description:
+			'Gestión de gatos con autenticación JWT robusta, control de roles (RBAC), y mejores prácticas de seguridad. Incluye gestión de usuarios, razas y gatos con relaciones entre entidades.',
+		// link: 'https://api-rick-and-morty-ashen.vercel.app/',
+		github: 'https://github.com/VixoPlank/nestjs-auth-best-practices',
+		image: nestjsAuthImg,
+		tags: [TAGS.NESTJS, TAGS.MYSQL, TAGS.DOCKER],
+		mainTech: [TAGS.NESTJS, TAGS.MYSQL],
+		status: 'Completado'
+	},
 	{
 		title: 'Sistema Web POS',
 		description:
 			'Aplicación web para gestionar ventas y stock en tiempo real. Utiliza Next.js con Zustand para el manejo de estado y Tailwind CSS para el diseño.',
 		// link: 'https://api-rick-and-morty-ashen.vercel.app/',
 		// github: 'https://github.com/VixoPlank/api-rick-and-morty',
-		image: "bg-[url('/777shots_so.png')]",
+		image: posSystemImg,
 		tags: [TAGS.NEXT, TAGS.TAILWIND, TAGS.NODE, TAGS.MYSQL, TAGS.PRISMA, TAGS.ZUSTAND],
 		mainTech: [TAGS.NEXT, TAGS.NODE, TAGS.MYSQL],
 		status: 'Completado'
@@ -80,10 +118,10 @@ const PROJECTS = [
 	{
 		title: 'API Rick & Morty',
 		description:
-			'Aplicación Next.js que usa Zustand y Axios para consumir la API pública de Rick and Morty. Permite buscar, filtrar, visualizar y guardar personajes favoritos, además de acceder a detalles y paginar resultados.',
+			'Aplicación Next.js que usa Zustand y Axios para consumir la API pública de Rick and Morty. Permite buscar, filtrar, visualizar y guardar personajes favoritos,acceder a detalles y paginar.',
 		link: 'https://api-rick-and-morty-ashen.vercel.app/',
 		github: 'https://github.com/VixoPlank/api-rick-and-morty',
-		image: "bg-[url('/816shots_so.png')]",
+		image: rickMortyImg,
 		tags: [TAGS.NEXT, TAGS.TAILWIND, TAGS.AXIOS, TAGS.ZUSTAND],
 		mainTech: [TAGS.NEXT],
 		status: 'Completado'
@@ -91,10 +129,10 @@ const PROJECTS = [
 	{
 		title: 'GitHub Profile',
 		description:
-			'Una aplicación React que permite buscar y visualizar perfiles de GitHub utilizando la API de GitHub. Usa Axios para consumir la API y obtener datos en tiempo real.',
+			'Una aplicación React que permite buscar y visualizar perfiles de GitHub utilizando la API de GitHub.',
 		link: 'https://github-profiles.vercel.app/',
 		github: 'https://github.com/VixoPlank/github-profiles',
-		image: "bg-[url('/261shots_so.png')]",
+		image: githubProfileImg,
 		tags: [TAGS.VITE, TAGS.REACT, TAGS.TAILWIND, TAGS.AXIOS],
 		mainTech: [TAGS.REACT],
 		status: 'Completado'
@@ -169,14 +207,16 @@ const getProjectCountByMainTech = (techName: string): number => {
 	{
 		PROJECTS.map(({ title, description, link, github, image, tags, mainTech, status }) => (
 			<article
-				class={`project-card group relative mx-auto h-60 w-full max-w-[360px] overflow-hidden rounded-xl border border-gray-200/10 bg-gray-900/40 backdrop-blur-sm transition-all duration-300 hover:border-gray-200/20 hover:bg-gray-900/60 hover:shadow-xl`}
+				class={`project-card group relative mx-auto min-h-64 w-full max-w-[360px] overflow-hidden rounded-xl border border-gray-200/10 bg-gray-900/40 backdrop-blur-sm transition-all duration-300 hover:border-gray-200/20 hover:bg-gray-900/60 hover:shadow-xl`}
 				data-technologies={mainTech.map((tech) => tech.name).join(',')}
 			>
 				{/* Imagen de fondo sutil */}
-				<div class={`absolute inset-0 opacity-5 ${image} bg-cover bg-center`} />
+				<div class="absolute inset-0 opacity-5">
+					<Image src={image} alt={title} class="h-full w-full object-cover" loading="lazy" />
+				</div>
 
 				{/* Contenido */}
-				<div class="relative z-10 flex h-full flex-col p-6">
+				<div class="relative z-10 flex min-h-full flex-col p-6">
 					{/* Header */}
 					<div class="mb-4 flex items-start justify-between">
 						<div class="min-w-0 flex-1">
@@ -207,9 +247,7 @@ const getProjectCountByMainTech = (techName: string): number => {
 					</div>
 
 					{/* Descripción */}
-					<p class="mb-4 line-clamp-4 flex-1 text-sm leading-relaxed text-gray-300">
-						{description}
-					</p>
+					<p class="mb-4 line-clamp-4 text-sm leading-relaxed text-gray-300">{description}</p>
 
 					{/* Tecnologías */}
 					<div class="mt-auto flex items-center gap-2">
@@ -313,6 +351,13 @@ const getProjectCountByMainTech = (techName: string): number => {
 	.line-clamp-4 {
 		display: -webkit-box;
 		-webkit-line-clamp: 4;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	.line-clamp-6 {
+		display: -webkit-box;
+		-webkit-line-clamp: 6;
 		-webkit-box-orient: vertical;
 		overflow: hidden;
 	}
