@@ -1,0 +1,18 @@
+title: Env-Guardian – Validador inteligente de archivos .env
+description: >-
+  Validador de archivos .env que detecta variables faltantes, desincronización y
+  tipos incorrectos, ofreciendo una CLI y web app para gestionar configuraciones
+  de forma segura y sencilla.
+image: /projects/env-guardian/image.png
+link: https://env-guardian.vercel.app/
+github: https://github.com/VixoPlank/env-guardian
+mainTech:
+  - Node.js
+  - React
+tags:
+  - Node.js
+  - Tailwind CSS
+  - React
+status: Completado
+order: 1
+published: true

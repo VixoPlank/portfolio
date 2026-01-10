@@ -1,0 +1,17 @@
+title: Sistema de autenticación y autorización
+description: >-
+  Gestión de gatos con autenticación JWT robusta, control de roles (RBAC), y
+  mejores prácticas de seguridad. Incluye gestión de usuarios, razas y gatos con
+  relaciones entre entidades.
+image: /projects/nestjs-auth-best-practices/image.png
+github: https://github.com/VixoPlank/nestjs-auth-best-practices
+mainTech:
+  - NestJS
+  - MySQL
+tags:
+  - NestJS
+  - MySQL
+  - Docker
+status: Completado
+order: 2
+published: true

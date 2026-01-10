@@ -1,0 +1,19 @@
+title: Sistema Web POS
+description: >-
+  Aplicación web para gestionar ventas y stock en tiempo real. Utiliza Next.js
+  con Zustand para el manejo de estado y Tailwind CSS para el diseño.
+image: /projects/sistema-web-pos/image.png
+mainTech:
+  - Next.js
+  - Node.js
+  - MySQL
+tags:
+  - Next.js
+  - Tailwind CSS
+  - Node.js
+  - MySQL
+  - Prisma
+  - Zustand
+status: Completado
+order: 3
+published: true

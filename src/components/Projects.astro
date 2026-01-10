@@ -14,137 +14,98 @@ import MySql from '../icons/MySql.astro'
 import Prisma from '../icons/Prisma.astro'
 import NestJS from '../icons/NestJS.astro'
 import Docker from '../icons/Docker.astro'
-import { Image } from 'astro:assets'
-import envGuardianImg from '../../public/env-guardian.png'
-import nestjsAuthImg from '../../public/nestjs-auth-best-practices.png'
-import posSystemImg from '../../public/777shots_so.png'
-import rickMortyImg from '../../public/816shots_so.png'
-import githubProfileImg from '../../public/261shots_so.png'
+import { getCollection } from 'astro:content'
 
-// Tecnologías principales (basadas en Skills.astro)
-const TAGS = {
-	REACT: {
+// Mapeo de tecnologías a iconos
+const TECH_ICONS: Record<string, { icon: any; name: string }> = {
+	React: {
 		icon: React,
 		name: 'React'
 	},
-	NEXT: {
+	'Next.js': {
 		icon: NextJS,
 		name: 'Next.js'
 	},
-	ASTRO: {
+	Astro: {
 		icon: AstroLogo,
 		name: 'Astro'
 	},
-	TAILWIND: {
+	'Tailwind CSS': {
 		icon: Tailwind,
 		name: 'Tailwind CSS'
 	},
-	NODE: {
+	'Node.js': {
 		icon: NodeJS,
 		name: 'Node.js'
 	},
-	EXPRESS: {
+	Express: {
 		icon: Express,
 		name: 'Express'
 	},
-	MONGO: {
+	MongoDB: {
 		icon: Mongo,
 		name: 'MongoDB'
 	},
-	MYSQL: {
+	MySQL: {
 		icon: MySql,
 		name: 'MySQL'
 	},
-	PRISMA: {
+	Prisma: {
 		icon: Prisma,
 		name: 'Prisma'
 	},
-	ZUSTAND: {
+	Zustand: {
 		icon: Zustand,
 		name: 'Zustand'
 	},
-	AXIOS: {
+	Axios: {
 		icon: Axios,
 		name: 'Axios'
 	},
-	VITE: {
+	Vite: {
 		icon: Vite,
 		name: 'Vite'
 	},
-	NESTJS: {
+	NestJS: {
 		icon: NestJS,
 		name: 'NestJS'
 	},
-	DOCKER: {
+	Docker: {
 		icon: Docker,
 		name: 'Docker'
 	}
 }
 
-const PROJECTS = [
-	{
-		title: 'Env-Guardian – Validador inteligente de archivos .env',
-		description:
-			'Validador de archivos .env que detecta variables faltantes, desincronización y tipos incorrectos, ofreciendo una CLI y web app para gestionar configuraciones de forma segura y sencilla.',
-		link: 'https://env-guardian.vercel.app/',
-		github: 'https://github.com/VixoPlank/env-guardian',
-		image: envGuardianImg,
-		tags: [TAGS.NODE, TAGS.TAILWIND, TAGS.REACT],
-		mainTech: [TAGS.NODE, TAGS.REACT],
-		status: 'Completado'
-	},
-	{
-		title: 'Sistema de autenticación y autorización',
-		description:
-			'Gestión de gatos con autenticación JWT robusta, control de roles (RBAC), y mejores prácticas de seguridad. Incluye gestión de usuarios, razas y gatos con relaciones entre entidades.',
-		// link: 'https://api-rick-and-morty-ashen.vercel.app/',
-		github: 'https://github.com/VixoPlank/nestjs-auth-best-practices',
-		image: nestjsAuthImg,
-		tags: [TAGS.NESTJS, TAGS.MYSQL, TAGS.DOCKER],
-		mainTech: [TAGS.NESTJS, TAGS.MYSQL],
-		status: 'Completado'
-	},
-	{
-		title: 'Sistema Web POS',
-		description:
-			'Aplicación web para gestionar ventas y stock en tiempo real. Utiliza Next.js con Zustand para el manejo de estado y Tailwind CSS para el diseño.',
-		// link: 'https://api-rick-and-morty-ashen.vercel.app/',
-		// github: 'https://github.com/VixoPlank/api-rick-and-morty',
-		image: posSystemImg,
-		tags: [TAGS.NEXT, TAGS.TAILWIND, TAGS.NODE, TAGS.MYSQL, TAGS.PRISMA, TAGS.ZUSTAND],
-		mainTech: [TAGS.NEXT, TAGS.NODE, TAGS.MYSQL],
-		status: 'Completado'
-	},
-	{
-		title: 'API Rick & Morty',
-		description:
-			'Aplicación Next.js que usa Zustand y Axios para consumir la API pública de Rick and Morty. Permite buscar, filtrar, visualizar y guardar personajes favoritos,acceder a detalles y paginar.',
-		link: 'https://api-rick-and-morty-ashen.vercel.app/',
-		github: 'https://github.com/VixoPlank/api-rick-and-morty',
-		image: rickMortyImg,
-		tags: [TAGS.NEXT, TAGS.TAILWIND, TAGS.AXIOS, TAGS.ZUSTAND],
-		mainTech: [TAGS.NEXT],
-		status: 'Completado'
-	},
-	{
-		title: 'GitHub Profile',
-		description:
-			'Una aplicación React que permite buscar y visualizar perfiles de GitHub utilizando la API de GitHub.',
-		link: 'https://github-profiles.vercel.app/',
-		github: 'https://github.com/VixoPlank/github-profiles',
-		image: githubProfileImg,
-		tags: [TAGS.VITE, TAGS.REACT, TAGS.TAILWIND, TAGS.AXIOS],
-		mainTech: [TAGS.REACT],
-		status: 'Completado'
-	}
-]
+// Obtener proyectos de la colección
+const allProjects = await getCollection('projects')
+
+// Filtrar solo proyectos publicados y ordenar por order (si existe) o mantener orden original
+const PROJECTS = allProjects
+	.filter((project) => project.data.published !== false) // Mostrar solo proyectos publicados (default: true)
+	.map((project) => ({
+		...project.data,
+		id: project.id
+	}))
+	.sort((a, b) => {
+		if (a.order !== undefined && b.order !== undefined) {
+			return a.order - b.order
+		}
+		if (a.order !== undefined) return -1
+		if (b.order !== undefined) return 1
+		return 0
+	})
+
+// Mapear tecnologías de string a objeto con icono
+const mapTechToIcon = (techName: string) => {
+	return TECH_ICONS[techName] || { icon: null, name: techName }
+}
 
 // Obtener solo las tecnologías principales que tienen proyectos en orden específico
 const getMainTechnologies = (): string[] => {
 	const techSet = new Set<string>()
 	PROJECTS.forEach((project) => {
 		project.mainTech.forEach((tech) => {
-			techSet.add(tech.name)
+			techSet.add(tech)
 		})
 	})
 
@@ -177,8 +138,7 @@ const getMainTechnologies = (): string[] => {
 
 // Contar proyectos por tecnología principal
 const getProjectCountByMainTech = (techName: string): number => {
-	return PROJECTS.filter((project) => project.mainTech.some((tech) => tech.name === techName))
-		.length
+	return PROJECTS.filter((project) => project.mainTech.includes(techName)).length
 }
 ---
 
@@ -205,71 +165,94 @@ const getProjectCountByMainTech = (techName: string): number => {
 <!-- Grid de Proyectos -->
 <div class="projects-grid grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
 	{
-		PROJECTS.map(({ title, description, link, github, image, tags, mainTech, status }) => (
-			<article
-				class={`project-card group relative mx-auto min-h-64 w-full max-w-[360px] overflow-hidden rounded-xl border border-gray-200/10 bg-gray-900/40 backdrop-blur-sm transition-all duration-300 hover:border-gray-200/20 hover:bg-gray-900/60 hover:shadow-xl`}
-				data-technologies={mainTech.map((tech) => tech.name).join(',')}
-			>
-				{/* Imagen de fondo sutil */}
-				<div class="absolute inset-0 opacity-5">
-					<Image src={image} alt={title} class="h-full w-full object-cover" loading="lazy" />
-				</div>
+		PROJECTS.map((project) => {
+			const { title, description, link, github, image, tags, mainTech, status } = project
+			const mainTechWithIcons = mainTech.map(mapTechToIcon)
+			const tagsWithIcons = tags.map(mapTechToIcon)
 
-				{/* Contenido */}
-				<div class="relative z-10 flex min-h-full flex-col p-6">
-					{/* Header */}
-					<div class="mb-4 flex items-start justify-between">
-						<div class="min-w-0 flex-1">
-							{link ? (
-								<a href={link} target="_blank" aria-label={`Ir al Proyecto ${title}`} class="block">
-									<h3 class="mb-1 line-clamp-2 text-lg font-semibold text-white transition-colors hover:text-blue-300">
-										{title}
-									</h3>
+			return (
+				<article
+					class={`project-card group relative mx-auto min-h-64 w-full max-w-[360px] overflow-hidden rounded-xl border border-gray-200/10 bg-gray-900/40 backdrop-blur-sm transition-all duration-300 hover:border-gray-200/20 hover:bg-gray-900/60 hover:shadow-xl`}
+					data-technologies={mainTech.join(',')}
+				>
+					{/* Imagen de fondo sutil */}
+					<div class="absolute inset-0 opacity-5">
+						<img src={`${image}`} alt={title} class="h-full w-full object-cover" loading="lazy" />
+					</div>
+
+					{/* Contenido */}
+					<div class="relative z-10 flex min-h-full flex-col p-6">
+						{/* Header */}
+						<div class="mb-4 flex items-start justify-between">
+							<div class="min-w-0 flex-1">
+								{link ? (
+									<a
+										href={link}
+										target="_blank"
+										aria-label={`Ir al Proyecto ${title}`}
+										class="block"
+									>
+										<h3 class="mb-1 line-clamp-2 text-lg font-semibold text-white transition-colors hover:text-blue-300">
+											{title}
+										</h3>
+									</a>
+								) : (
+									<h3 class="mb-1 line-clamp-2 text-lg font-semibold text-white">{title}</h3>
+								)}
+								<span
+									class={`status-badge ${status === 'Completado' ? 'completed' : status === 'En desarrollo' ? 'in-progress' : 'in-pause'}`}
+								>
+									{status}
+								</span>
+							</div>
+
+							{github && (
+								<a
+									href={github}
+									target="_blank"
+									aria-label={`Ver repositorio de ${title}`}
+									class="ml-3 flex-shrink-0 rounded-lg p-2 text-gray-400 transition-all duration-200 hover:bg-white/5 hover:text-white"
+								>
+									<GitHub className="size-5" />
 								</a>
-							) : (
-								<h3 class="mb-1 line-clamp-2 text-lg font-semibold text-white">{title}</h3>
 							)}
-							<span class={`status-badge ${status === 'Completado' ? 'completed' : 'in-progress'}`}>
-								{status}
-							</span>
 						</div>
 
-						{github && (
-							<a
-								href={github}
-								target="_blank"
-								aria-label={`Ver repositorio de ${title}`}
-								class="ml-3 flex-shrink-0 rounded-lg p-2 text-gray-400 transition-all duration-200 hover:bg-white/5 hover:text-white"
-							>
-								<GitHub className="size-5" />
-							</a>
-						)}
-					</div>
+						{/* Descripción */}
+						<p class="mb-4 line-clamp-4 text-sm leading-relaxed text-gray-300">{description}</p>
 
-					{/* Descripción */}
-					<p class="mb-4 line-clamp-4 text-sm leading-relaxed text-gray-300">{description}</p>
-
-					{/* Tecnologías */}
-					<div class="mt-auto flex items-center gap-2">
-						{/* Tecnologías principales */}
-						{mainTech.map((tech) => (
-							<div class="tech-tag main-tech" title={tech.name}>
-								<tech.icon class="size-4" />
-							</div>
-						))}
-						{/* Tecnologías secundarias (máximo 3 adicionales) */}
-						{tags
-							.filter((tag) => !mainTech.some((mt) => mt.name === tag.name))
-							.slice(0, 3)
-							.map((tag) => (
-								<div class="tech-tag secondary-tech" title={tag.name}>
-									<tag.icon class="size-4" />
-								</div>
-							))}
+						{/* Tecnologías */}
+						<div class="mt-auto flex items-center gap-2">
+							{/* Tecnologías principales */}
+							{mainTechWithIcons.map((tech) => {
+								const IconComponent = tech.icon
+								return (
+									IconComponent && (
+										<div class="tech-tag main-tech" title={tech.name}>
+											<IconComponent class="size-4" />
+										</div>
+									)
+								)
+							})}
+							{/* Tecnologías secundarias (máximo 3 adicionales) */}
+							{tagsWithIcons
+								.filter((tag) => !mainTech.includes(tag.name))
+								.slice(0, 3)
+								.map((tag) => {
+									const IconComponent = tag.icon
+									return (
+										IconComponent && (
+											<div class="tech-tag secondary-tech" title={tag.name}>
+												<IconComponent class="size-4" />
+											</div>
+										)
+									)
+								})}
+						</div>
 					</div>
-				</div>
-			</article>
-		))
+				</article>
+			)
+		})
 	}
 </div>
 
@@ -322,6 +305,10 @@ const getProjectCountByMainTech = (techName: string): number => {
 
 	.status-badge.in-progress {
 		@apply border border-yellow-500/20 bg-yellow-500/10 text-yellow-400;
+	}
+
+	.status-badge.in-pause {
+		@apply border border-gray-500/20 bg-gray-500/10 text-gray-400;
 	}
 
 	/* Tags de tecnología minimalistas */
