@@ -3,7 +3,7 @@ description: >-
   Validador de archivos .env que detecta variables faltantes, desincronización y
   tipos incorrectos, ofreciendo una CLI y web app para gestionar configuraciones
   de forma segura y sencilla.
-image: /projects/env-guardian/image.png
+image: env-guardian/image.png
 link: https://env-guardian.vercel.app/
 github: https://github.com/VixoPlank/env-guardian
 mainTech:

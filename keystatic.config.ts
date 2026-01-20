@@ -69,8 +69,8 @@ export default config({
 				}),
 				image: fields.image({
 					label: 'Project Image',
-					directory: 'public/projects/',
-					publicPath: '/projects/',
+					directory: 'src/assets/projects/',
+					publicPath: '../../assets/projects/',
 					validation: { isRequired: true }
 				}),
 				link: fields.url({

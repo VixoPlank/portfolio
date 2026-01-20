@@ -15,7 +15,7 @@ const projects = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		description: z.string(),
-		image: z.string(),
+		image: z.string(), // Ruta relativa de la imagen, se convierte a ImageMetadata en el componente
 		link: z.string().url().optional(),
 		github: z.string().url().optional(),
 		mainTech: z.array(z.string()),

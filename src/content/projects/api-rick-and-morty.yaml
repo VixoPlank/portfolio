@@ -3,7 +3,7 @@ description: >-
   Aplicación Next.js que usa Zustand y Axios para consumir la API pública de
   Rick and Morty. Permite buscar, filtrar, visualizar y guardar personajes
   favoritos,acceder a detalles y paginar.
-image: /projects/api-rick-and-morty/image.png
+image: api-rick-and-morty/image.png
 link: https://api-rick-and-morty-ashen.vercel.app/
 github: https://github.com/VixoPlank/api-rick-and-morty
 mainTech:

@@ -2,7 +2,7 @@ title: GitHub Profile
 description: >-
   Una aplicación React que permite buscar y visualizar perfiles de GitHub
   utilizando la API de GitHub.
-image: /projects/github-profiles/image.png
+image: github-profiles/image.png
 link: https://github-profiles.vercel.app/
 github: https://github.com/VixoPlank/github-profiles
 mainTech:
